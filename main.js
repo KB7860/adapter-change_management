@@ -117,7 +117,7 @@ healthcheck(callback) {
       this.emitOffline();
       log.error('ServiceNow ID ' + this.id + ': healthcheck failed');
       if (callback) {
-          callback({errorMessage: error});
+          callback(null, result);
       }
    } else {
      /**
@@ -133,7 +133,7 @@ healthcheck(callback) {
       this.emitOnline();
       log.debug('ServiceNow: Passed healthcheck');
       if (callback) {
-          callback({responseData: result});
+          callback(result, null);
       }
    }
  });
@@ -192,7 +192,7 @@ healthcheck(callback) {
      * Note how the object was instantiated in the constructor().
      * get() takes a callback function.
      */
-     this.connector.get(callback);
+     this.connector.get((data,error) => callback(data,error));
   }
 
   /**
@@ -212,7 +212,8 @@ healthcheck(callback) {
      * post() takes a callback function.
      */
      // maybe?
-     this.connector.post(callback);
+     this.connector.post((data,error) => callback(data,error));
+
   }
 }
 
