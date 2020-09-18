@@ -171,6 +171,7 @@ class ServiceNowAdapter extends EventEmitter {
      * Note how the object was instantiated in the constructor().
      * post() takes a callback function.
      */
+     // maybe?
      this.connector.post(callback);
   }
 }
